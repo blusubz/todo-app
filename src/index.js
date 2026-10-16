@@ -1,15 +1,18 @@
 import { Project } from './models/project.js';
 import { Todo } from './models/todo.js';
 
+const defaultProject = new Project('Shopping List');
+const todoShopping1 = new Todo('Buy', 'Eggs', '1', 'To make breakfast');
+const todoShopping2 = new Todo('Buy', 'Milk', '1');
+const todoShopping3 = new Todo('Buy', 'Bacon', '1');
 
-const todo1 = new Todo('Buy', 'Eggs', 'This week', '1', 'To make breakfast');
-const todo2 = new Todo('Buy', 'Milk', 'This week', '1');
-const todo3 = new Todo('Buy', 'Bacon', 'This week', '1');
-const project = new Project('Shopping List');
+const booksToBuyProject = new Project('Books to Buy');
+const todoBlakesBook = new Todo('Buy', 'A Ruby Bright As Fire', '')
 
-project.addTodo(todo1);
-project.addTodo(todo2);
-project.addTodo(todo3);
+
+defaultProject.addTodo(todoShopping1);
+defaultProject.addTodo(todoShopping2);
+defaultProject.addTodo(todoShopping3);
 
 
 console.log(project);
