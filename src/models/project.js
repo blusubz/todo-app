@@ -1,6 +1,14 @@
 export class Project {
-    constructor(name, todos) {
+    constructor(name) {
         this.name = name;
-        this.todos = []
+        this.todos = [];
+    }
+
+    addTodo(todo) {
+        this.todos.push(todo);
+    }
+
+    getTodos() {
+        return this.todos;
     }
 }
