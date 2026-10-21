@@ -24,9 +24,9 @@ console.log(defaultProject);
 console.log(booksToBuyProject);
 
 
-const dialog = document.getElementById('projectDialog');
+const dialog = document.getElementById('project-dialog');
 const openBtn = document.getElementById('addProjectBtn');
-const closeBtn = document.getElementById('submitBtn');
+const closeBtn = document.getElementById('closeBtn');
 
 openBtn.addEventListener('click', () => {
     dialog.showModal();

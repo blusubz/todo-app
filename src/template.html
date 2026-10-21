@@ -13,6 +13,7 @@
                 <button id="addProjectBtn">New Project</button>
                 <div id="projectsList"></div>
             </aside>
+
             <main class="main-content">
                 <h1>Welcome to your app that gets things done.</h1>
                 <h2>Checklist</h2>
@@ -21,11 +22,15 @@
         </div>
 
         <!-- The Dialog Box -->
-         <dialog id="projectDialog">
-            <p>Add project name here</p>
-            <button id="submitBtn">Submit</button>
+         <dialog id="project-dialog">
+            <form method="dialog" id="project-name">
+                <!-- method="dialog" allows button with submit to close dialog -->
+                <div>
+                    <label for="projectName">Project name:</label>
+                    <input type="text" id="projectName" name="projectName" autofocus>
+                </div>
+                <button type="submit" id="closeBtn">Submit</button>
+            </form>
          </dialog>
-
-         <button id="openBtn">Open Dialog</button>
     </body>
 </html>
