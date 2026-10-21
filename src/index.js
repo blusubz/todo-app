@@ -1,8 +1,13 @@
 import { Project } from './models/project.js';
 import { Todo } from './models/todo.js';
+import { renderProjects, renderTodos } from './domController.js';
 import './styles.css';
 
-let projects = []; // Store all project here for easy display later
+let projects = [
+    { name: 'Shopping List' }, 
+    { name: 'Books to Buy' }
+]; // Store all project here for easy display later
+renderProjects(projects);
 
 const defaultProject = new Project('Shopping List');
 const todoShopping1 = new Todo('Buy', 'Eggs', '1', 'To make breakfast');
@@ -22,6 +27,7 @@ booksToBuyProject.addTodo(todoHermeticaBook);
 
 console.log(defaultProject);
 console.log(booksToBuyProject);
+
 
 
 const dialog = document.getElementById('project-dialog');
