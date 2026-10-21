@@ -23,5 +23,18 @@ booksToBuyProject.addTodo(todoHermeticaBook);
 console.log(defaultProject);
 console.log(booksToBuyProject);
 
+
+const dialog = document.getElementById('projectDialog');
+const openBtn = document.getElementById('addProjectBtn');
+const closeBtn = document.getElementById('submitBtn');
+
+openBtn.addEventListener('click', () => {
+    dialog.showModal();
+});
+
+closeBtn.addEventListener('click', () => {
+    dialog.close();
+});
+
 // TODO: Phase 2 -> Application State / Managing Multiple Projects
 // to store the projects and TODOs, I can have a dialog pop up when the user clicks on 'new project' which will be in the sidebar, then they'll input the name and it will display the name on the main-content div. then a button will be created and be called 'add todo'. then same concept with a dialog to be created and then display the new todo 

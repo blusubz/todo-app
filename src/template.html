@@ -10,12 +10,22 @@
         <div id="container">
             <aside class="sidebar">
                 <h1>Projects</h1>
-                <button>Add Project</button>
+                <button id="addProjectBtn">New Project</button>
+                <div id="projectsList"></div>
             </aside>
             <main class="main-content">
                 <h1>Welcome to your app that gets things done.</h1>
                 <h2>Checklist</h2>
+                <div id="todoCards"></div>
             </main>
         </div>
+
+        <!-- The Dialog Box -->
+         <dialog id="projectDialog">
+            <p>Add project name here</p>
+            <button id="submitBtn">Submit</button>
+         </dialog>
+
+         <button id="openBtn">Open Dialog</button>
     </body>
 </html>
