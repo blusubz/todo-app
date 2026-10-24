@@ -16,11 +16,12 @@
 }
 
 .sidebar {
-    background-color: rgb(0, 255, 247);
+    background-color: black;
+    color: green;
     grid-area: sidebar;
 }
 
 .main-content {
-    background-color: green;
+    background-color: rgb(126, 198, 126);
     grid-area: main;
 }
