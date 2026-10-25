@@ -36,15 +36,50 @@
             </main>
         </div>
 
-        <!-- The Dialog Box -->
+        <!-- The Project Dialog Box -->
          <dialog id="project-dialog">
             <form method="dialog" id="project-name-form">
                 <!-- method="dialog" allows button with submit to close dialog -->
                 <div>
-                    <label for="projectName-input">Project name:</label>
+                    <label for="projectName-input">
+                        Project name:
+                    </label>
                     <input type="text" id="projectName-input" name="projectName-input" autofocus>
                 </div>
                 <button type="submit" id="closeBtn">Submit</button>
+            </form>
+         </dialog>
+
+        <!-- The Todo Dialog Box -->
+         <dialog id="todo-dialog">
+            <form method="dialog" id="todo-form">
+                <div>
+                    <label for="todo-title">Title:</label>
+                    <input type="text" id="todo-title" name="todo-title" autofocus>
+                </div>
+                <div>
+                    <label for="todo-description">Description:</label>
+                    <input type="text" id="todo-description" name="todo-description">
+                </div>
+                <div>
+                    <label for="todo-priority">Choose Priority:</label>
+                    <select name="priority" id="todo-priority">
+                        <option value="">--Please select priority--</option>
+                        </option>
+                        <option value="high">high</option>
+                        <option value="medium">medium</option>
+                        <option value="low">low</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="todo-notes">Notes:</label>
+                    <input type="text" id="todo-notes" name="todo-notes">
+                </div>
+                <div>
+                    <label for="check">Completed</label>
+                    <input type="checkbox" id="check">
+                </div>
+                <button type="submit" id="close-todo-btn">Submit</button>
             </form>
          </dialog>
     </body>
