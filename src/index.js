@@ -29,8 +29,8 @@ form.addEventListener('submit', (e) => {
 
     if (activeProject) {
         // render TODOs for this active project
-        // renderTodos(activeProject.getTodos());
         // highlight the project.name
+        // renderTodos(activeProject.getTodos());
     }
 
     form.reset();

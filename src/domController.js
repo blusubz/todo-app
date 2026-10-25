@@ -12,8 +12,7 @@ export function renderProjects(projects) {
         li.addEventListener('click', e => {
             // renderTodos(todos);
             console.log(`` + ' project selected');
-            const selectedId = e.target.dataset.id;
-            console.log(`Selected ${project.name} project with ${project.id} id`)
+            console.log(`Selected ${project.name} project with ${project.id} id`);
         });
 
         ul.appendChild(li);
