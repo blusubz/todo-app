@@ -3,7 +3,7 @@ import { Todo } from './models/todo.js';
 import { renderProjects, renderTodos } from './domController.js';
 import './styles.css';
 
-let projects = []; // Store all project here for easy display later
+let projects = []; // Store all projects here for easy display later
 let activeProject = null;
 let todos = [];
 
@@ -20,12 +20,8 @@ form.addEventListener('submit', (e) => {
     e.preventDefault(); // Stops refresh of the page after button submit is clicked
     
     const projectName = document.getElementById('projectName-input').value;
-    
-    // Create a new Project object and push it to array
-    const newProject = new Project(projectName);
-    projects.push(newProject);
-    activeProject = newProject; // Project just created and should render TODOs
 
+    createProject(projectName);
     renderProjects(projects);
 
     // const testTodo = new Todo('Buy Bacon', 'Get Colanta brand', 'High', 'Check expiration date', true);
@@ -34,11 +30,42 @@ form.addEventListener('submit', (e) => {
     if (activeProject) {
         // render TODOs for this active project
         // renderTodos(activeProject.getTodos());
+        // highlight the project.name
     }
 
     form.reset();
     dialog.close();
 });
 
-// If there's more than one project and it's selected we can create a click event on that project that is selected and then we can call renderTodos on that project. 
-// const projectSelect = document.getElementById(projects[]);
+// Create Project function
+function createProject(projectName) {
+    // Universal Unique Identifier = UUID
+    const id = crypto.randomUUID();
+
+    // Create a new Project object and push it to array
+    const newProject = new Project(projectName, id);
+    projects.push(newProject);
+    activeProject = newProject; // Project just created and should render TODOs
+}
+
+// Add Todo logic 
+const createTodoBtn = document.getElementById('create-todo-btn');
+const todoDialog = document.getElementById('todo-dialog');
+const addTodoBtn = document.getElementById('add-todo-btn');
+const todoForm = document.getElementById('todo-form');
+
+document.addEventListener('click', e => {
+    if (e.target.matches("#create-todo-btn")) {
+        console.log('clicked')
+    }
+});
+
+// createTodoBtn.addEventListener('click', () => {
+//     // Form logic goes here?
+//     // On click open todoDialog
+//     todoDialog.showModal();
+// });
+
+// todoForm.addEventListener('submit', e => {
+//     e.preventDefault(); // Stops refresh of the page after button submit is clicked
+// });

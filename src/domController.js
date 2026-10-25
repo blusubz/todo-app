@@ -6,11 +6,14 @@ export function renderProjects(projects) {
     projects.forEach(project => {
         const li = document.createElement('li');
         li.textContent = project.name;
+        li.dataset.id = project.id; // This creates data-id="<uuid>" on the HTML element
 
         // Logic for selecting project
-        li.addEventListener('click', () => {
+        li.addEventListener('click', e => {
             // renderTodos(todos);
-            console.log(`${project.name}` + ' project selected');
+            console.log(`` + ' project selected');
+            const selectedId = e.target.dataset.id;
+            console.log(`Selected ${project.name} project with ${project.id} id`)
         });
 
         ul.appendChild(li);
