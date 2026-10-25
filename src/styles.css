@@ -15,14 +15,14 @@
         "sidebar main";
 }
 
-.sidebar {
-    background-color: black;
-    color: green;
+#sidebar {
+    background-color: green;
+    color: black;
     grid-area: sidebar;
 }
 
-.main-content {
-    background-color: green;
-    color: black;
+#main-content {
+    background-color: black;
+    color: green;
     grid-area: main;
 }

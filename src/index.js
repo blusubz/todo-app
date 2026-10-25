@@ -28,9 +28,12 @@ form.addEventListener('submit', (e) => {
 
     renderProjects(projects);
 
+    // const testTodo = new Todo('Buy Bacon', 'Get Colanta brand', 'High', 'Check expiration date', true);
+    // activeProject.addTodo(testTodo);
+
     if (activeProject) {
-        // render TODOs for this project
-        renderTodos();
+        // render TODOs for this active project
+        // renderTodos(activeProject.getTodos());
     }
 
     form.reset();

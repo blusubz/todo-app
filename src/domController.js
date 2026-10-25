@@ -1,7 +1,5 @@
-import { Todo } from "./models/todo.js";
-
 export function renderProjects(projects) {
-    const projectsList = document.getElementById('projectsList')
+    const projectsList = document.getElementById('projectsList');
     const ul = document.createElement('ul');
 
     projectsList.textContent = ''; // Clear out current UL to begin adding project names
@@ -17,6 +15,15 @@ export function renderProjects(projects) {
         ul.appendChild(li);
     });
     projectsList.appendChild(ul);
+
+    // Now that Project is created we can dynamically add a 'Add Todo' button into main content
+    const mainContent = document.getElementById('main-content');
+    const todoBtn = document.createElement('button');
+    todoBtn.textContent = 'Add Todo';
+    todoBtn.id = 'add-todo-btn';
+    todoBtn.button = 'submit';
+
+    mainContent.appendChild(todoBtn);
 }
 
 export function renderTodos(todos) {
@@ -34,7 +41,7 @@ export function renderTodos(todos) {
         todoDescription.textContent = todo.description;
 
         const todoPriority = document.createElement('p'); // select input
-        todoPriority.textContent = todo.priority; 
+        todoPriority.textContent = `Priority: ${todo.priority}`; 
 
         const todoNotes = document.createElement('p');
         todoNotes.textContent = todo.notes;
