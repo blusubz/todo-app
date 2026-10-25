@@ -26,7 +26,6 @@ form.addEventListener('submit', (e) => {
     projects.push(newProject);
     activeProject = newProject; // Project just created and should render TODOs
 
-
     renderProjects(projects);
 
     if (activeProject) {
