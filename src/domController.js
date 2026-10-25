@@ -10,6 +10,7 @@ export function renderProjects(projects) {
         // Logic for selecting project
         li.addEventListener('click', () => {
             // renderTodos(todos);
+            console.log(`${project.name}` + ' project selected');
         });
 
         ul.appendChild(li);
@@ -17,13 +18,18 @@ export function renderProjects(projects) {
     projectsList.appendChild(ul);
 
     // Now that Project is created we can dynamically add a 'Add Todo' button into main content
-    const mainContent = document.getElementById('main-content');
-    const todoBtn = document.createElement('button');
-    todoBtn.textContent = 'Add Todo';
-    todoBtn.id = 'add-todo-btn';
-    todoBtn.button = 'submit';
+    let createTodoBtn = document.getElementById('create-todo-btn');
+    
+    if (!createTodoBtn && projects.length > 0) {
+        const createTodoBtn = document.createElement('button');
+        createTodoBtn.textContent = 'Add Todo';
+        createTodoBtn.id = 'create-todo-btn';
+        createTodoBtn.type = 'button';
 
-    mainContent.appendChild(todoBtn);
+        const mainContent = document.getElementById('main-content');
+
+        mainContent.appendChild(createTodoBtn);
+    }
 }
 
 export function renderTodos(todos) {
