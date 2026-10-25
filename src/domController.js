@@ -20,7 +20,45 @@ export function renderProjects(projects) {
 }
 
 export function renderTodos(todos) {
-   return;
-}
+    const cardContainer = document.getElementById('card-container'); 
+    cardContainer.innerHTML = '';  
 
-// pass in active project in renderTodos
+    todos.forEach(todo => {
+        const divTodoCard = document.createElement('div');
+        divTodoCard.classList.add('todo-card');
+
+        const todoTitle = document.createElement('h5');
+        todoTitle.textContent = todo.title;
+
+        const todoDescription = document.createElement('p');
+        todoDescription.textContent = todo.description;
+
+        const todoPriority = document.createElement('p'); // select input
+        todoPriority.textContent = todo.priority; 
+
+        const todoNotes = document.createElement('p');
+        todoNotes.textContent = todo.notes;
+
+        const todoChecklist = document.createElement('div');
+        todoChecklist.classList.add('checklist');
+        const checklistLabel = document.createElement('label');
+        checklistLabel.htmlFor = 'isChecked';
+        checklistLabel.textContent = 'Completed';
+        const inputCheckbox = document.createElement('input');
+        inputCheckbox.type = 'checkbox';
+        inputCheckbox.id = 'isChecked';
+        inputCheckbox.name = 'isChecked';
+        inputCheckbox.checked = todo.checklist;
+
+        todoChecklist.appendChild(checklistLabel);
+        todoChecklist.appendChild(inputCheckbox);
+
+        divTodoCard.appendChild(todoTitle);
+        divTodoCard.appendChild(todoDescription);
+        divTodoCard.appendChild(todoPriority);
+        divTodoCard.appendChild(todoNotes);
+        divTodoCard.appendChild(todoChecklist);
+
+        cardContainer.appendChild(divTodoCard);
+    });
+}
