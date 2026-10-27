@@ -10,7 +10,6 @@ export function renderProjects(projects, onProjectSelect) {
 
         // Logic for selecting project
         li.addEventListener('click', e => {
-            console.log(`Selected ${project.name} project with ${project.id} id`);
             onProjectSelect(project);
         });
 
@@ -79,5 +78,24 @@ export function renderTodos(todos) {
 
 export function highlightActiveProject(projectId) {
     const activeLi = document.querySelector(`[data-id="${projectId}"]`);
+
+    // Loop through all projects rendered on screen
+    const liElements = document.querySelectorAll('li');
+
+    // Reset all that are on screen to black
+    liElements.forEach(li => {
+      li.style.color = "black";
+    });
+
     activeLi.style.color = "yellow";
 }
+
+
+// Remove Book object eventlistener
+        // deleteBtn.addEventListener('click', () => {
+        //     const id = myLibrary[i].id;
+        //     const updatedLibrary = myLibrary.filter(book => book.id !== id);
+
+        //     myLibrary = updatedLibrary;
+        //     displayBookToScreen();
+        // });

@@ -22,7 +22,8 @@ form.addEventListener('submit', (e) => {
     const projectName = document.getElementById('projectName-input').value;
 
     createProject(projectName);
-    renderProjects(projects, selectedProject => {
+    // Render Projects and highlight selected Project name
+    renderProjects(projects, (selectedProject) => {
         activeProject = selectedProject;
         highlightActiveProject(activeProject.id);
         // renderTodos(activeProject.getTodos());
@@ -31,11 +32,9 @@ form.addEventListener('submit', (e) => {
     // const testTodo = new Todo('Buy Bacon', 'Get Colanta brand', 'High', 'Check expiration date', true);
     // activeProject.addTodo(testTodo);
 
-    // render TODOs for this active project
+    // Highlight created Project immediately
     if (activeProject) {
-        // highlight the Active Project
         highlightActiveProject(activeProject.id);
-
         // renderTodos(activeProject.getTodos());
     }
 
