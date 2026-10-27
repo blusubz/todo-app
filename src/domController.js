@@ -1,4 +1,4 @@
-export function renderProjects(projects) {
+export function renderProjects(projects, onProjectSelect) {
     const projectsList = document.getElementById('projectsList');
     const ul = document.createElement('ul');
 
@@ -10,9 +10,8 @@ export function renderProjects(projects) {
 
         // Logic for selecting project
         li.addEventListener('click', e => {
-            // renderTodos(todos);
-            console.log(`` + ' project selected');
             console.log(`Selected ${project.name} project with ${project.id} id`);
+            onProjectSelect(project);
         });
 
         ul.appendChild(li);
@@ -76,4 +75,9 @@ export function renderTodos(todos) {
 
         cardContainer.appendChild(divTodoCard);
     });
+}
+
+export function highlightActiveProject(projectId) {
+    const activeLi = document.querySelector(`[data-id="${projectId}"]`);
+    activeLi.style.color = "yellow";
 }

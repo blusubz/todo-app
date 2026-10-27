@@ -1,6 +1,6 @@
 import { Project } from './models/project.js';
 import { Todo } from './models/todo.js';
-import { renderProjects, renderTodos } from './domController.js';
+import { renderProjects, renderTodos, highlightActiveProject } from './domController.js';
 import './styles.css';
 
 let projects = []; // Store all projects here for easy display later
@@ -22,14 +22,20 @@ form.addEventListener('submit', (e) => {
     const projectName = document.getElementById('projectName-input').value;
 
     createProject(projectName);
-    renderProjects(projects);
+    renderProjects(projects, selectedProject => {
+        activeProject = selectedProject;
+        highlightActiveProject(activeProject.id);
+        // renderTodos(activeProject.getTodos());
+    });
 
     // const testTodo = new Todo('Buy Bacon', 'Get Colanta brand', 'High', 'Check expiration date', true);
     // activeProject.addTodo(testTodo);
 
+    // render TODOs for this active project
     if (activeProject) {
-        // render TODOs for this active project
-        // highlight the project.name
+        // highlight the Active Project
+        highlightActiveProject(activeProject.id);
+
         // renderTodos(activeProject.getTodos());
     }
 
