@@ -77,8 +77,8 @@ todoForm.addEventListener('submit', e => {
     createTodo(title, description, priority, notes, checklist);
     renderTodos(activeProject.getTodos());
 
-    form.reset();
-    dialog.close();
+    todoForm.reset();
+    todoDialog.close();
 });
 
 // Create Todo function
