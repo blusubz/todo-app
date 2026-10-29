@@ -55,11 +55,11 @@ function createProject(projectName) {
 
 // Add Todo logic 
 const todoForm = document.getElementById('todo-form');
+const todoDialog = document.getElementById('todo-dialog');
 
 // Event delegation is used to click the 'Add Todo' button since it's dynamically created in renderProjects once a project is created
 document.addEventListener('click', e => {
     if (e.target.matches("#create-todo-btn")) {
-        const todoDialog = document.getElementById('todo-dialog');
         todoDialog.showModal();
     }
 });
