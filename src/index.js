@@ -4,8 +4,8 @@ import { renderProjects, renderTodos, highlightActiveProject } from './domContro
 import './styles.css';
 
 let projects = []; // Store all projects here for easy display later
-let activeProject = null;
 let todos = [];
+let activeProject = null;
 
 const dialog = document.getElementById('project-dialog');
 const openBtn = document.getElementById('addProjectBtn');
@@ -54,28 +54,40 @@ function createProject(projectName) {
 }
 
 // Add Todo logic 
-const createTodoBtn = document.getElementById('create-todo-btn');
-const addTodoBtn = document.getElementById('add-todo-btn');
 const todoForm = document.getElementById('todo-form');
 
 // Event delegation is used to click the 'Add Todo' button since it's dynamically created in renderProjects once a project is created
 document.addEventListener('click', e => {
     if (e.target.matches("#create-todo-btn")) {
         const todoDialog = document.getElementById('todo-dialog');
-
-        console.log('inside todo button')
         todoDialog.showModal();
-        // render todos of current project
-        renderTodos(activeProject.getTodos());
     }
 });
 
-// createTodoBtn.addEventListener('click', () => {
-//     // Form logic goes here?
-//     // On click open todoDialog
-//     todoDialog.showModal();
-// });
+todoForm.addEventListener('submit', e => {
+    e.preventDefault(); // Stops refresh of the page after button submit is clicked
 
-// todoForm.addEventListener('submit', e => {
-//     e.preventDefault(); // Stops refresh of the page after button submit is clicked
-// });
+    // render todos of current project
+    const title = document.getElementById('todo-title').value;
+    const description = document.getElementById('todo-description').value;
+    const priority = document.getElementById('todo-priority').value;
+    const notes = document.getElementById('todo-notes').value;
+    const checklist = document.getElementById('check').checked;
+
+    createTodo(title, description, priority, notes, checklist);
+    renderTodos(activeProject.getTodos());
+
+    form.reset();
+    dialog.close();
+});
+
+// Create Todo function
+function createTodo(title, description, priority, notes, checklist) {
+    // Universal Unique Identifier = UUID
+    const id = crypto.randomUUID();
+
+    // Create a new Todo object and push it to TodoCard?
+    const newTodo = new Todo(title, description, priority, notes, checklist, id);
+
+    activeProject.addTodo(newTodo);
+}

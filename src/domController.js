@@ -40,7 +40,7 @@ export function renderTodos(todos) {
         const divTodoCard = document.createElement('div');
         divTodoCard.classList.add('todo-card');
 
-        const todoTitle = document.createElement('h5');
+        const todoTitle = document.createElement('h4');
         todoTitle.textContent = todo.title;
 
         const todoDescription = document.createElement('p');
