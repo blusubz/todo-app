@@ -26,3 +26,12 @@
     color: green;
     grid-area: main;
 }
+
+#card-container {
+    display: grid;
+    gap: 4px;
+}
+
+.todo-card {
+    border: 1px solid red;
+}
