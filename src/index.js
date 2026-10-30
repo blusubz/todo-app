@@ -59,6 +59,7 @@ document.addEventListener('click', e => {
     }
 });
 
+// Create Todo Logic - Event listener 
 todoForm.addEventListener('submit', e => {
     e.preventDefault(); // Stops refresh of the page after button submit is clicked
 
@@ -116,25 +117,27 @@ document.addEventListener('change', e => {
     }
 });
 
+// Delete Todo Logic
 document.addEventListener('click', e => {
-    
     const deleteTarget = e.target.closest(".delete-todo-btn");
 
     if (deleteTarget === null) {
         return;
     }
 
-    console.log('Delete button clicked');
-
     const card = e.target.closest(".todo-card");
+
     // what's the card UUID?
     const todoId = card.dataset.id;
-    console.log('Target Todo ID: ', todoId);
-    console.log('Todos before remove: ', activeProject.getTodos())
 
+    // Remove todo 
     activeProject.removeTodo(todoId);
 
-    console.log('Todos after remove: ', activeProject.getTodos())
-
+    // Render current Todos 
     renderTodos(activeProject.getTodos());
+});
+
+// Delete Project Logic 
+document.addEventListener('click', () => {
+    const deleteProject = document.querySelector('delete-project-btn');
 });

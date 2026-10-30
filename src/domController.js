@@ -33,6 +33,7 @@ export function renderProjects(projects, onProjectSelect) {
     let deleteProjBtn = document.createElement('button');
     deleteProjBtn.textContent = 'Delete Project';
     deleteProjBtn.classList.add('delete-project-btn');
+    deleteProjBtn.type = 'button';
 
     mainContent.appendChild(deleteProjBtn);
 }
