@@ -4,7 +4,6 @@ import { renderProjects, renderTodos, highlightActiveProject } from './domContro
 import './styles.css';
 
 let projects = []; // Store all projects here for easy display later
-let todos = [];
 let activeProject = null;
 
 const dialog = document.getElementById('project-dialog');
@@ -26,16 +25,12 @@ form.addEventListener('submit', (e) => {
     renderProjects(projects, (selectedProject) => {
         activeProject = selectedProject;
         highlightActiveProject(activeProject.id);
-        // renderTodos(activeProject.getTodos());
+        renderTodos(activeProject.getTodos());
     });
-
-    // const testTodo = new Todo('Buy Bacon', 'Get Colanta brand', 'High', 'Check expiration date', true);
-    // activeProject.addTodo(testTodo);
 
     // Highlight created Project immediately
     if (activeProject) {
         highlightActiveProject(activeProject.id);
-        // renderTodos(activeProject.getTodos());
     }
 
     form.reset();
@@ -53,7 +48,7 @@ function createProject(projectName) {
     activeProject = newProject; // Project just created and should render TODOs
 }
 
-// Add Todo logic 
+// 'Add Todo' logic 
 const todoForm = document.getElementById('todo-form');
 const todoDialog = document.getElementById('todo-dialog');
 
@@ -72,9 +67,9 @@ todoForm.addEventListener('submit', e => {
     const description = document.getElementById('todo-description').value;
     const priority = document.getElementById('todo-priority').value;
     const notes = document.getElementById('todo-notes').value;
-    const checklist = document.getElementById('check').checked;
+    const isCompleted = document.getElementById('isCompleted').checked;
 
-    createTodo(title, description, priority, notes, checklist);
+    createTodo(title, description, priority, notes, isCompleted);
     renderTodos(activeProject.getTodos());
 
     todoForm.reset();
@@ -82,12 +77,41 @@ todoForm.addEventListener('submit', e => {
 });
 
 // Create Todo function
-function createTodo(title, description, priority, notes, checklist) {
+function createTodo(title, description, priority, notes, isCompleted) {
     // Universal Unique Identifier = UUID
     const id = crypto.randomUUID();
 
     // Create a new Todo object and push it to TodoCard?
-    const newTodo = new Todo(title, description, priority, notes, checklist, id);
+    const newTodo = new Todo(title, description, priority, notes, isCompleted, id);
 
     activeProject.addTodo(newTodo);
 }
+
+// Check for checkbox click(change)
+document.addEventListener('change', e => {
+    if (e.target.type === 'checkbox') {
+        // which card was clicked?
+        const card = e.target.closest(".todo-card"); 
+        const isTodoCompleted = e.target.checked;
+
+        // Check if the checbox selected is from a todo-card and not the todo-dialog (this will cause a runtime error)
+        if (card === null) {
+            return;
+        }
+
+        // what's the card UUID?
+        const todoId = card.dataset.id;
+
+        // how do we update our data?         
+        let currentProjectTodos = activeProject.getTodos();
+            // if checbox true, make false
+            // if checkbox false, make true
+        
+        const foundTodo = currentProjectTodos.find(todo => todo.id === todoId);
+
+        if (foundTodo) {
+            // isTodoCompleted === true ? foundTodo.isCompleted = false : foundTodo.isCompleted = true;
+            foundTodo.isCompleted = isTodoCompleted;
+        }
+    }
+});

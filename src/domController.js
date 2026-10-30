@@ -39,6 +39,7 @@ export function renderTodos(todos) {
     todos.forEach(todo => {
         const divTodoCard = document.createElement('div');
         divTodoCard.classList.add('todo-card');
+        divTodoCard.dataset.id = todo.id;
 
         const todoTitle = document.createElement('h4');
         todoTitle.textContent = todo.title;
@@ -55,13 +56,13 @@ export function renderTodos(todos) {
         const todoChecklist = document.createElement('div');
         todoChecklist.classList.add('checklist');
         const checklistLabel = document.createElement('label');
-        checklistLabel.htmlFor = 'isChecked';
+        checklistLabel.htmlFor = `checkbox-${todo.id}`;
         checklistLabel.textContent = 'Completed';
         const inputCheckbox = document.createElement('input');
         inputCheckbox.type = 'checkbox';
-        inputCheckbox.id = 'isChecked';
-        inputCheckbox.name = 'isChecked';
-        inputCheckbox.checked = todo.checklist;
+        inputCheckbox.id = `checkbox-${todo.id}`;
+        inputCheckbox.name = 'isCompleted';
+        inputCheckbox.checked = todo.isCompleted;
 
         todoChecklist.appendChild(checklistLabel);
         todoChecklist.appendChild(inputCheckbox);
