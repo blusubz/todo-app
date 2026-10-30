@@ -21,7 +21,7 @@ export function renderProjects(projects, onProjectSelect) {
     let createTodoBtn = document.getElementById('create-todo-btn');
     
     if (!createTodoBtn && projects.length > 0) {
-        const createTodoBtn = document.createElement('button');
+        createTodoBtn = document.createElement('button');
         createTodoBtn.textContent = 'Add Todo';
         createTodoBtn.id = 'create-todo-btn';
         createTodoBtn.type = 'button';
@@ -67,11 +67,17 @@ export function renderTodos(todos) {
         todoChecklist.appendChild(checklistLabel);
         todoChecklist.appendChild(inputCheckbox);
 
+        const deleteTodoBtn = document.createElement('button');
+        deleteTodoBtn.type = 'button';
+        deleteTodoBtn.classList.add('delete-todo-btn');
+        deleteTodoBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><title>bin-2</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 2H14M4 7H20M6 7H18V19C18 20.6569 16.6569 22 15 22H9C7.34315 22 6 20.6569 6 19V7ZM10 11L10 18M14 11L14 18"/></svg>'
+
         divTodoCard.appendChild(todoTitle);
         divTodoCard.appendChild(todoDescription);
         divTodoCard.appendChild(todoPriority);
         divTodoCard.appendChild(todoNotes);
         divTodoCard.appendChild(todoChecklist);
+        divTodoCard.appendChild(deleteTodoBtn);
 
         cardContainer.appendChild(divTodoCard);
     });
@@ -90,13 +96,3 @@ export function highlightActiveProject(projectId) {
 
     activeLi.style.color = "yellow";
 }
-
-
-// Remove Book object eventlistener
-        // deleteBtn.addEventListener('click', () => {
-        //     const id = myLibrary[i].id;
-        //     const updatedLibrary = myLibrary.filter(book => book.id !== id);
-
-        //     myLibrary = updatedLibrary;
-        //     displayBookToScreen();
-        // });

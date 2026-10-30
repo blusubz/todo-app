@@ -115,3 +115,26 @@ document.addEventListener('change', e => {
         }
     }
 });
+
+document.addEventListener('click', e => {
+    
+    const deleteTarget = e.target.closest(".delete-todo-btn");
+
+    if (deleteTarget === null) {
+        return;
+    }
+
+    console.log('Delete button clicked');
+
+    const card = e.target.closest(".todo-card");
+    // what's the card UUID?
+    const todoId = card.dataset.id;
+    console.log('Target Todo ID: ', todoId);
+    console.log('Todos before remove: ', activeProject.getTodos())
+
+    activeProject.removeTodo(todoId);
+
+    console.log('Todos after remove: ', activeProject.getTodos())
+
+    renderTodos(activeProject.getTodos());
+});
