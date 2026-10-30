@@ -1,9 +1,9 @@
 export class Todo {
-    constructor(title, description, priority, notes, checklist) {
+    constructor(title, description, priority, notes, isCompleted) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.notes = notes;
-        this.checklist = checklist;
+        this.isCompleted = isCompleted;
     }
 }
