@@ -81,7 +81,7 @@ function createTodo(title, description, priority, notes, isCompleted) {
     // Universal Unique Identifier = UUID
     const id = crypto.randomUUID();
 
-    // Create a new Todo object and push it to TodoCard?
+    // Create a new Todo object and push it to .todo-card
     const newTodo = new Todo(title, description, priority, notes, isCompleted, id);
 
     activeProject.addTodo(newTodo);

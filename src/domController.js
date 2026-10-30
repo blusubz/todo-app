@@ -1,5 +1,6 @@
 export function renderProjects(projects, onProjectSelect) {
     const projectsList = document.getElementById('projectsList');
+    const mainContent = document.getElementById('main-content');
     const ul = document.createElement('ul');
 
     projectsList.textContent = ''; // Clear out current UL to begin adding project names
@@ -26,10 +27,12 @@ export function renderProjects(projects, onProjectSelect) {
         createTodoBtn.id = 'create-todo-btn';
         createTodoBtn.type = 'button';
 
-        const mainContent = document.getElementById('main-content');
-
         mainContent.appendChild(createTodoBtn);
     }
+
+    let deleteProjBtn = document.createElement('button');
+    deleteProjBtn.textContent = 'Delete Project';
+    mainContent.appendChild(deleteProjBtn);
 }
 
 export function renderTodos(todos) {
