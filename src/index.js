@@ -15,7 +15,7 @@ openBtn.addEventListener('click', () => {
 });
 
 // Add project
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', e => {
     e.preventDefault(); // Stops refresh of the page after button submit is clicked
     
     const projectName = document.getElementById('projectName-input').value;
@@ -95,7 +95,7 @@ document.addEventListener('change', e => {
         const card = e.target.closest(".todo-card"); 
         const isTodoCompleted = e.target.checked;
 
-        // Check if the checbox selected is from a todo-card and not the todo-dialog (this will cause a runtime error)
+        // Check if the checkbox selected is from a todo-card and not the todo-dialog (this will cause a runtime error)
         if (card === null) {
             return;
         }
@@ -105,8 +105,6 @@ document.addEventListener('change', e => {
 
         // how do we update our data?         
         let currentProjectTodos = activeProject.getTodos();
-            // if checbox true, make false
-            // if checkbox false, make true
         
         const foundTodo = currentProjectTodos.find(todo => todo.id === todoId);
 
@@ -145,15 +143,23 @@ document.addEventListener('click', e => {
         return;
     }
 
-    const projectId = activeProject.project.id;
+    if (activeProject === null) {
+        return;
+    }
+
+    const projectId = activeProject.id;
 
     // Remove Project 
     const updatedProjects = projects.filter(project => project.id !== projectId);
 
     projects = updatedProjects;
 
-    // Render Projects
-    renderProjects(updatedProjects);
+    // Render Projects and highlight selected Project name
+    renderProjects(projects, (selectedProject) => {
+        activeProject = selectedProject;
+        highlightActiveProject(activeProject.id);
+        renderTodos(activeProject.getTodos());
+    });
 
     activeProject = null; // Since previous project deleted we point activeProject to null
 
