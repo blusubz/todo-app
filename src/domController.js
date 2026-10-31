@@ -30,12 +30,21 @@ export function renderProjects(projects, onProjectSelect) {
         mainContent.appendChild(createTodoBtn);
     }
 
-    let deleteProjBtn = document.createElement('button');
-    deleteProjBtn.textContent = 'Delete Project';
-    deleteProjBtn.classList.add('delete-project-btn');
-    deleteProjBtn.type = 'button';
+    // Now that Project is created we can dynamically add a 'Delete Project' button into main content
+    let deleteProjBtn = document.getElementById('delete-todo-btn');
 
-    mainContent.appendChild(deleteProjBtn);
+    if (!deleteProjBtn && projects.length > 0) {
+
+        console.log('testing')
+
+        deleteProjBtn = document.createElement('button');
+        deleteProjBtn.textContent = 'Delete Project';
+        deleteProjBtn.id = 'delete-todo-btn';
+        deleteProjBtn.classList.add('delete-project-btn');
+        deleteProjBtn.type = 'button';
+
+        mainContent.appendChild(deleteProjBtn);
+    }
 }
 
 export function renderTodos(todos) {

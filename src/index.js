@@ -138,6 +138,25 @@ document.addEventListener('click', e => {
 });
 
 // Delete Project Logic 
-document.addEventListener('click', () => {
-    const deleteProject = document.querySelector('delete-project-btn');
-});
+document.addEventListener('click', e => {
+    const deleteProject = e.target.closest('.delete-project-btn');
+
+    if (deleteProject === null) {
+        return;
+    }
+
+    const projectId = activeProject.project.id;
+
+    // Remove Project 
+    const updatedProjects = projects.filter(project => project.id !== projectId);
+
+    projects = updatedProjects;
+
+    // Render Projects
+    renderProjects(updatedProjects);
+
+    activeProject = null; // Since previous project deleted we point activeProject to null
+
+    const todoCardsContainer = document.getElementById('card-container');
+    todoCardsContainer.textContent = '';
+}); 

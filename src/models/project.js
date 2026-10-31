@@ -1,4 +1,4 @@
-export class Project {
+ export class Project {
     constructor(name, id) {
         this.name = name;
         this.todos = [];
