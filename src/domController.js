@@ -29,17 +29,13 @@ export function renderProjects(projects, onProjectSelect) {
 
         mainContent.appendChild(createTodoBtn);
     }
-
     // Now that Project is created we can dynamically add a 'Delete Project' button into main content
-    let deleteProjBtn = document.getElementById('delete-todo-btn');
+    let deleteProjBtn = document.getElementById('delete-project-btn');
 
     if (!deleteProjBtn && projects.length > 0) {
-
-        console.log('testing')
-
         deleteProjBtn = document.createElement('button');
         deleteProjBtn.textContent = 'Delete Project';
-        deleteProjBtn.id = 'delete-todo-btn';
+        deleteProjBtn.id = 'delete-project-btn';
         deleteProjBtn.classList.add('delete-project-btn');
         deleteProjBtn.type = 'button';
 

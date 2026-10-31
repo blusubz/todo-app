@@ -161,8 +161,22 @@ document.addEventListener('click', e => {
         renderTodos(activeProject.getTodos());
     });
 
-    activeProject = null; // Since previous project deleted we point activeProject to null
+    activeProject = null; // Since previous project deleted we point activeProject to null, leaving us to click on a different project if any to render it's contents
 
+    // This wipes the todos from screen for current project deletion
     const todoCardsContainer = document.getElementById('card-container');
     todoCardsContainer.textContent = '';
+
+    // Reference for main content to remove buttons 
+    const mainContent = document.getElementById('main-content');
+
+    // Remove 'Add Todo' button
+    const addTodoBtn = document.getElementById('create-todo-btn');
+    
+    mainContent.removeChild(addTodoBtn);
+
+    // Remove 'Delete Project' button
+    const deleteProjectBtn = document.getElementById('delete-project-btn');
+
+    mainContent.removeChild(deleteProjectBtn);
 }); 
