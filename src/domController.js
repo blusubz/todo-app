@@ -87,9 +87,9 @@ export function highlightActiveProject(projectId) {
 
 export function renderProjectView(project) {
     const mainContent = document.getElementById('main-content');
-    const cardContainer = document.getElementById('card-container');
+    const btnActions = document.getElementById('btns-project-actions');
 
-    cardContainer.innerHTML = '';
+    btnActions.innerHTML = '';
 
     if (project === null) {
         return;
@@ -103,15 +103,13 @@ export function renderProjectView(project) {
     createTodoBtn.id = 'create-todo-btn';
     createTodoBtn.type = 'button';
 
-    
-
     const deleteProjBtn = document.createElement('button');
     deleteProjBtn.textContent = 'Delete Project';
     deleteProjBtn.id = 'delete-project-btn';
     deleteProjBtn.classList.add('delete-project-btn');
     deleteProjBtn.type = 'button';
 
-    cardContainer.appendChild(createTodoBtn);
-    cardContainer.appendChild(deleteProjBtn);
-    mainContent.appendChild(cardContainer);
+    btnActions.appendChild(createTodoBtn);
+    btnActions.appendChild(deleteProjBtn);
+    mainContent.appendChild(btnActions);
 }
