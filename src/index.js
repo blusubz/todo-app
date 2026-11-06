@@ -7,6 +7,21 @@ let projects = []; // Store all projects here for easy display later
 projects = loadProjects(); // Load projects if they exist in storage, otherwise 
 let activeProject = projects.length > 0 ? projects[0] : null;
 
+// Load projects if any saved
+if (projects.length > 0) {
+    // Render list of projects in sidebar
+    renderProjects(projects, selectedProject => {
+        activeProject = selectedProject;
+        highlightActiveProject(activeProject.id);
+        // Display the main content for selected project 
+        renderProjectView(activeProject);
+    });
+
+    // Highlight and render the view for the active project
+    highlightActiveProject(activeProject.id);
+    renderProjectView(activeProject);
+}
+
 const dialog = document.getElementById('project-dialog');
 const openBtn = document.getElementById('addProjectBtn');
 const form = document.getElementById('project-name-form');
