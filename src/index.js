@@ -1,10 +1,11 @@
 import { Project } from './models/project.js';
 import { Todo } from './models/todo.js';
-import { renderProjects, renderTodos, highlightActiveProject } from './domController.js';
+import { renderProjects, renderTodos, highlightActiveProject, renderProjectView } from './domController.js';
 import './styles.css';
 
 let projects = []; // Store all projects here for easy display later
-let activeProject = null;
+projects = loadProjects(); // Load projects if they exist in storage, otherwise 
+let activeProject = projects.length > 0 ? projects[0] : null;
 
 const dialog = document.getElementById('project-dialog');
 const openBtn = document.getElementById('addProjectBtn');
@@ -14,23 +15,24 @@ openBtn.addEventListener('click', () => {
     dialog.showModal();
 });
 
-// Add project
+// Add project by form
 form.addEventListener('submit', e => {
     e.preventDefault(); // Stops refresh of the page after button submit is clicked
     
     const projectName = document.getElementById('projectName-input').value;
 
     createProject(projectName);
-    // Render Projects and highlight selected Project name
-    renderProjects(projects, (selectedProject) => {
+    renderProjects(projects, selectedProject => {
         activeProject = selectedProject;
         highlightActiveProject(activeProject.id);
-        renderTodos(activeProject.getTodos());
+        // Display the main content for selected project 
+        renderProjectView(activeProject);
     });
 
     // Highlight created Project immediately
     if (activeProject) {
         highlightActiveProject(activeProject.id);
+        renderProjectView(activeProject);
     }
 
     form.reset();
@@ -46,6 +48,9 @@ function createProject(projectName) {
     const newProject = new Project(projectName, id);
     projects.push(newProject);
     activeProject = newProject; // Project just created and should render TODOs
+
+    // Store state here
+    saveProjects();
 }
 
 // 'Add Todo' logic 
@@ -59,7 +64,7 @@ document.addEventListener('click', e => {
     }
 });
 
-// Create Todo Logic - Event listener 
+// Create Todo-Card Logic - Event listener 
 todoForm.addEventListener('submit', e => {
     e.preventDefault(); // Stops refresh of the page after button submit is clicked
 
@@ -71,7 +76,10 @@ todoForm.addEventListener('submit', e => {
     const isCompleted = document.getElementById('isCompleted').checked;
 
     createTodo(title, description, priority, notes, isCompleted);
-    renderTodos(activeProject.getTodos());
+    renderProjectView(activeProject); // renderTodos is within renderProjectView func
+
+    // Store state here
+    saveProjects(); 
 
     todoForm.reset();
     todoDialog.close();
@@ -112,6 +120,9 @@ document.addEventListener('change', e => {
             // isTodoCompleted === true ? foundTodo.isCompleted = false : foundTodo.isCompleted = true;
             foundTodo.isCompleted = isTodoCompleted;
         }
+
+        // Store state here
+        saveProjects();
     }
 });
 
@@ -132,10 +143,14 @@ document.addEventListener('click', e => {
     activeProject.removeTodo(todoId);
 
     // Render current Todos 
-    renderTodos(activeProject.getTodos());
+    renderProjectView(activeProject);
+
+    // Store state here
+    saveProjects();
 });
 
 // Delete Project Logic 
+// Should handle deleting the full project view and project name from the projects list
 document.addEventListener('click', e => {
     const deleteProject = e.target.closest('.delete-project-btn');
 
@@ -154,29 +169,76 @@ document.addEventListener('click', e => {
 
     projects = updatedProjects;
 
+    // Fallback
+    activeProject = projects.length > 0 ? projects[0] : null; 
+
     // Render Projects and highlight selected Project name
     renderProjects(projects, (selectedProject) => {
         activeProject = selectedProject;
         highlightActiveProject(activeProject.id);
-        renderTodos(activeProject.getTodos());
+        renderProjectView(activeProject);
     });
 
-    activeProject = null; // Since previous project deleted we point activeProject to null, leaving us to click on a different project if any to render it's contents
+   // Re-render workspace (clears view automatically if activePlayer is null)
+   renderProjectView(activeProject);
 
-    // This wipes the todos from screen for current project deletion
-    const todoCardsContainer = document.getElementById('card-container');
-    todoCardsContainer.textContent = '';
+   if (activeProject) {
+    highlightActiveProject(activeProject.id);
+   }
 
-    // Reference for main content to remove buttons 
-    const mainContent = document.getElementById('main-content');
+    // Store state here
+    saveProjects();
+});
 
-    // Remove 'Add Todo' button
-    const addTodoBtn = document.getElementById('create-todo-btn');
-    
-    mainContent.removeChild(addTodoBtn);
+// Save Projects to local storage
+function saveProjects() {
+    localStorage.setItem('projects', JSON.stringify(projects));
+}
 
-    // Remove 'Delete Project' button
-    const deleteProjectBtn = document.getElementById('delete-project-btn');
+// Load Projects from local storage
+function loadProjects() {
+    try { // If nothing in storage then initialize projects = []
+        const storedData = localStorage.getItem('projects');
 
-    mainContent.removeChild(deleteProjectBtn);
-}); 
+        if (!storedData) {
+            // Start the page with null values
+            return [];
+        }
+
+        const rawProjects = JSON.parse(storedData);
+
+        if (!rawProjects) {
+            return [];
+        }
+
+        const rehydratedProjects = rawProjects.map(rawProject => {
+            // 1. Rebuild the Project instance
+            const project = new Project(rawProject.name, rawProject.id);
+
+            // 2. Loop through the raw todos array inside this project (if it exists)
+            if (rawProject.todos) {
+                rawProject.todos.forEach(rawTodo => {
+                    const todo = new Todo(
+                        rawTodo.title,
+                        rawTodo.description,
+                        rawTodo.priority,
+                        rawTodo.notes,
+                        rawTodo.isCompleted,
+                        rawTodo.id
+                    );
+                    
+                    // Add it back to the project using the project addTodo method
+                    project.addTodo(todo);
+                });
+            }
+
+            return project; // Return the fully restored Project instance
+        });
+
+        return rehydratedProjects;
+    } catch (e) {
+        // Display error
+        console.log(`error message: ${e}`);
+        return []; // Fallback so app doesn't crash on corrupted data
+    }
+}

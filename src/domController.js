@@ -1,8 +1,8 @@
 export function renderProjects(projects, onProjectSelect) {
     const projectsList = document.getElementById('projectsList');
-    const mainContent = document.getElementById('main-content');
     const ul = document.createElement('ul');
 
+    // Sidebar content
     projectsList.textContent = ''; // Clear out current UL to begin adding project names
     projects.forEach(project => {
         const li = document.createElement('li');
@@ -10,37 +10,14 @@ export function renderProjects(projects, onProjectSelect) {
         li.dataset.id = project.id; // This creates data-id="<uuid>" on the HTML element
 
         // Logic for selecting project
-        li.addEventListener('click', e => {
+        li.addEventListener('click', () => {
             onProjectSelect(project);
         });
 
         ul.appendChild(li);
     });
-    projectsList.appendChild(ul);
-
-    // Now that Project is created we can dynamically add a 'Add Todo' button into main content
-    let createTodoBtn = document.getElementById('create-todo-btn');
     
-    if (!createTodoBtn && projects.length > 0) {
-        createTodoBtn = document.createElement('button');
-        createTodoBtn.textContent = 'Add Todo';
-        createTodoBtn.id = 'create-todo-btn';
-        createTodoBtn.type = 'button';
-
-        mainContent.appendChild(createTodoBtn);
-    }
-    // Now that Project is created we can dynamically add a 'Delete Project' button into main content
-    let deleteProjBtn = document.getElementById('delete-project-btn');
-
-    if (!deleteProjBtn && projects.length > 0) {
-        deleteProjBtn = document.createElement('button');
-        deleteProjBtn.textContent = 'Delete Project';
-        deleteProjBtn.id = 'delete-project-btn';
-        deleteProjBtn.classList.add('delete-project-btn');
-        deleteProjBtn.type = 'button';
-
-        mainContent.appendChild(deleteProjBtn);
-    }
+    projectsList.appendChild(ul);
 }
 
 export function renderTodos(todos) {
@@ -106,4 +83,35 @@ export function highlightActiveProject(projectId) {
     });
 
     activeLi.style.color = "yellow";
+}
+
+export function renderProjectView(project) {
+    const mainContent = document.getElementById('main-content');
+    const cardContainer = document.getElementById('card-container');
+
+    cardContainer.innerHTML = '';
+
+    if (project === null) {
+        return;
+    }
+
+    renderTodos(project.getTodos());
+
+    // Once we rendered todos we can now append the buttons 'Add Todo' & 'Delete Project'
+    const createTodoBtn = document.createElement('button');
+    createTodoBtn.textContent = 'Add Todo';
+    createTodoBtn.id = 'create-todo-btn';
+    createTodoBtn.type = 'button';
+
+    
+
+    const deleteProjBtn = document.createElement('button');
+    deleteProjBtn.textContent = 'Delete Project';
+    deleteProjBtn.id = 'delete-project-btn';
+    deleteProjBtn.classList.add('delete-project-btn');
+    deleteProjBtn.type = 'button';
+
+    cardContainer.appendChild(createTodoBtn);
+    cardContainer.appendChild(deleteProjBtn);
+    mainContent.appendChild(cardContainer);
 }
