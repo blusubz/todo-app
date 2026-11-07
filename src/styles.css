@@ -30,6 +30,12 @@
 
     /* Sidebar body selector */
     --bg-sidebar-outer: #5D6393;
+
+    /* Delete Button Tokens */
+    --delete-btn-bg: var(--card-border);
+    --delete-btn-text: var(--main-h1);
+    --delete-btn-hover-bg: #6b4747; /* Shifts to Muted Earthy Rose on hover */
+    --delete-btn-border: #855c5c; /* Soft matching red border accent */
 }
 
 #container {
@@ -99,10 +105,30 @@
 
 .delete-todo-btn {
     cursor: pointer;
-    /* width: 200px; */
     border-radius: 15px;
     width: 100px;
     text-align: center;
+
+    color: var(--delete-btn-text);
+    background-color: var(--bg-sidebar-outer);
+
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.delete-todo-btn:hover {
+    background-color: var(--delete-btn-hover-bg);
+    border-color: var(--delete-btn-border);
+}
+
+.delete-todo-btn:active {
+    transform: scale(0.96);
+}
+
+/* Contraining svg img */ 
+.delete-todo-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
 }
 
 #btns-project-actions {
@@ -120,6 +146,11 @@
     font-size: 1rem;
     background-color: var(--btn-bg-color);
     color: var(--btn-text-color);
+}
+
+#delete-project-btn {
+    background-color: var(--delete-btn-hover-bg);
+    color: var(--main-h1);
 }
 
 #create-todo-btn:hover,
