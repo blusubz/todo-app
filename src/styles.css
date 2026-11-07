@@ -98,11 +98,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* svg {
-    width: 20px;
-    padding: 20px;
-} */
-
 .delete-todo-btn {
     cursor: pointer;
     border-radius: 15px;

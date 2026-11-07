@@ -177,6 +177,13 @@ document.addEventListener('click', e => {
         return;
     }
 
+    let deleteConfirmation = confirm("Are you sure you want to delete Project and it's Todos?");
+
+    // Check if user accepts to delete project
+    if (!deleteConfirmation) {
+        return;
+    } 
+
     const projectId = activeProject.id;
 
     // Remove Project 
