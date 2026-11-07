@@ -6,32 +6,112 @@
     box-sizing: border-box;
 }
 
+/* Theme for App */
+:root {
+    /* Main body selector */
+    --bg-outer: #474249;
+
+    /* Main header fonts */
+    --main-h1: #f5f0e1;
+
+    /* Action buttons */
+    --btn-bg-color: #f5f0e1;
+    --btn-text-color: #474249;
+
+    /* Hover state for Action Button*/
+    --btn-hover-bg: #5D6393;
+    --btn-hover-text: #ffffff;
+
+    /* Todo Cards: Slate-Tinted Cards */
+    --card-bg: #3d415e; /* Depper, modier slate than the sidebar */
+    --card-border: #5D6393; /* Sidebar color used subtly as a border */
+    --card-text: #f5f0e1; /* Off-white linen text */
+    --card-text-muted: #b8bcca; /* Soft cool-gray for secondary text/notes */
+
+    /* Sidebar body selector */
+    --bg-sidebar-outer: #5D6393;
+}
+
 #container {
     display: grid;
     min-height: 100dvh;
-    grid-template-columns: 1.2fr 3fr;
+    grid-template-columns: minmax(220px, 280px) 1fr;
     grid-template-areas: 
         "sidebar main"
         "sidebar main";
 }
 
 #sidebar {
-    background-color: green;
+    background-color: var(--bg-sidebar-outer);
     color: black;
     grid-area: sidebar;
 }
 
 #main-content {
-    background-color: black;
-    color: green;
+    background-color: var(--bg-outer);
+    color: var(--main-h1);
     grid-area: main;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+
+    /* border: #5D6393 solid 4px; */
 }
 
 #card-container {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 4px;
 }
 
 .todo-card {
-    border: 1px solid red;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    padding: 20px;
+    aspect-ratio: 1 / 1;
+    width: 180px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    /* Content inside card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.todo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.todo-card .delete-todo-btn {
+    cursor: pointer;
+    width: 20px;
+}
+
+#btns-project-actions {
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+}
+
+#create-todo-btn,
+#delete-project-btn {
+    min-width: 100px;
+    padding: 10px 40px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 1rem;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+}
+
+#create-todo-btn:hover,
+#delete-project-btn:hover {
+    color: var(--btn-hover-text);
+    background-color: var(--btn-hover-bg);
 }
