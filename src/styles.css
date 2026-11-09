@@ -183,6 +183,6 @@ ul {
     margin: 0;
 }
 
-#projectsList > ul > li:active { 
-    /* background-color: red; */
+li {
+    cursor: pointer;
 }
