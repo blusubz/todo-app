@@ -28,14 +28,15 @@
     --card-text: #f5f0e1; /* Off-white linen text */
     --card-text-muted: #b8bcca; /* Soft cool-gray for secondary text/notes */
 
-    /* Sidebar body selector */
-    --bg-sidebar-outer: #5D6393;
-
     /* Delete Button Tokens */
     --delete-btn-bg: var(--card-border);
     --delete-btn-text: var(--main-h1);
     --delete-btn-hover-bg: #6b4747; /* Shifts to Muted Earthy Rose on hover */
     --delete-btn-border: #855c5c; /* Soft matching red border accent */
+
+    /* Sidebar body selector */
+    --bg-sidebar-outer: #5D6393;
+    --sidebar-project-items: #d0d4e3;
 }
 
 #container {
@@ -49,7 +50,6 @@
 
 #sidebar {
     background-color: var(--bg-sidebar-outer);
-    color: black;
     grid-area: sidebar;
 }
 
@@ -156,10 +156,12 @@
 
 aside > h1 {
     text-align: center;
-
+    color: var(--main-h1);
+    font-size: 1.5rem;
     margin-top: 35px;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
+
 
 #projects-content {
     display: flex;
@@ -181,6 +183,6 @@ ul {
     margin: 0;
 }
 
-li {
-    gap: 30px;
+#projectsList > ul > li:active { 
+    /* background-color: red; */
 }

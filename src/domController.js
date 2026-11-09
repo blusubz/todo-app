@@ -79,10 +79,10 @@ export function highlightActiveProject(projectId) {
 
     // Reset all that are on screen to black
     liElements.forEach(li => {
-      li.style.color = "black";
+      li.style.color = "#d0d4e3";
     });
 
-    activeLi.style.color = "yellow";
+    activeLi.style.color = "#e0a96d";
 }
 
 export function renderProjectView(project) {
