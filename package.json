@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blusubz/restaurant-website.git"
+    "url": "git+https://github.com/blusubz/todo-app.git"
   },
   "keywords": [],
   "author": "Morris",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/blusubz/restaurant-website/issues"
+    "url": "https://github.com/blusubz/todo-app/issues"
   },
-  "homepage": "https://github.com/blusubz/restaurant-website#readme",
+  "homepage": "https://github.com/blusubz/todo-app#readme",
   "devDependencies": {
     "css-loader": "^7.1.5",
     "html-loader": "^5.1.0",
