@@ -71,8 +71,9 @@ export function renderTodos(todos) {
     });
 }
 
-export function highlightActiveProject(projectId) {
+export function highlightActiveProject(projectId, projectName) {
     const activeLi = document.querySelector(`[data-id="${projectId}"]`);
+    const projectTitleMain = document.getElementById('active-project-title');
 
     // Loop through all projects rendered on screen
     const liElements = document.querySelectorAll('li');
@@ -83,6 +84,7 @@ export function highlightActiveProject(projectId) {
     });
 
     activeLi.style.color = "#e0a96d";
+    projectTitleMain.textContent = `${projectName}`;
 }
 
 export function renderProjectView(project) {

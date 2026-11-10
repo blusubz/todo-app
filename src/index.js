@@ -1,6 +1,6 @@
 import { Project } from './models/project.js';
 import { Todo } from './models/todo.js';
-import { renderProjects, renderTodos, highlightActiveProject, renderProjectView } from './domController.js';
+import { renderProjects, highlightActiveProject, renderProjectView } from './domController.js';
 import './styles.css';
 
 let projects = []; // Store all projects here for easy display later
@@ -12,13 +12,14 @@ if (projects.length > 0) {
     // Render list of projects in sidebar
     renderProjects(projects, selectedProject => {
         activeProject = selectedProject;
-        highlightActiveProject(activeProject.id);
+        // console.log(activeProject.name);
+        highlightActiveProject(activeProject.id, activeProject.name);
         // Display the main content for selected project 
         renderProjectView(activeProject);
     });
 
     // Highlight and render the view for the active project
-    highlightActiveProject(activeProject.id);
+    highlightActiveProject(activeProject.id, activeProject.name);
     renderProjectView(activeProject);
 }
 
@@ -39,14 +40,14 @@ form.addEventListener('submit', e => {
     createProject(projectName);
     renderProjects(projects, selectedProject => {
         activeProject = selectedProject;
-        highlightActiveProject(activeProject.id);
+        highlightActiveProject(activeProject.id, activeProject.name);
         // Display the main content for selected project 
         renderProjectView(activeProject);
     });
 
     // Highlight created Project immediately
     if (activeProject) {
-        highlightActiveProject(activeProject.id);
+        highlightActiveProject(activeProject.id, activeProject.name);
         renderProjectView(activeProject);
     }
 
@@ -197,7 +198,7 @@ document.addEventListener('click', e => {
     // Render Projects and highlight selected Project name
     renderProjects(projects, (selectedProject) => {
         activeProject = selectedProject;
-        highlightActiveProject(activeProject.id);
+        highlightActiveProject(activeProject.id, activeProject.name);
         renderProjectView(activeProject);
     });
 
@@ -205,7 +206,7 @@ document.addEventListener('click', e => {
    renderProjectView(activeProject);
 
    if (activeProject) {
-    highlightActiveProject(activeProject.id);
+    highlightActiveProject(activeProject.id, activeProject.name);
    }
 
     // Store state here

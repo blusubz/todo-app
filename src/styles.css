@@ -196,3 +196,8 @@ ul {
 li {
     cursor: pointer;
 }
+
+#main-content #active-project-title {
+    color: #e0a96d;
+    margin-top: 1rem;
+}
