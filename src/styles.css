@@ -164,17 +164,24 @@ aside > h1 {
 
 
 #projects-content {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
+    /* display: flex; */
+    text-align: center;
     gap: 3rem;
+}
+
+#addProjectBtn {
+    cursor: pointer;
+    color: var(--btn-text-color);
+    background-color: var(--btn-bg-color);
+    padding: 10px 20px;
+    border-radius: 20px;
 }
 
 #projectsList > ul {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-left: 3rem;
+    margin-top: 3rem;
 }
 
 ul {
