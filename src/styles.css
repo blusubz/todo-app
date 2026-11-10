@@ -70,8 +70,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
-    /* border: blue solid 3px; */
-
     margin-left: 15px;
 }
 
@@ -175,6 +173,11 @@ aside > h1 {
     background-color: var(--btn-bg-color);
     padding: 10px 20px;
     border-radius: 20px;
+}
+
+#addProjectBtn:hover {
+    color: var(--btn-hover-text);
+    background-color: #e0a96d;    
 }
 
 #projectsList > ul {
