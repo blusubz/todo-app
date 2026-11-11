@@ -1,15 +1,17 @@
-# Marinas Restaurant
+# Todo App
 
-This is a simple SPA website with multiple tabs for a made up restaurant. The main takeaway here is that I used a bundler to build and deploy it for learning purposes. 
+A clean, responsive and intuitive task management application built with a warm minimalist aesthetic. Organized around project workflows, this app allows users to create custom project categories, track specific TODO cards with priority levels and manage tasks seamlessly without clutter.
 
-[Live Demo](https://blusubz.github.io/restaurant-website/)
+📝 [Live Demo](https://blusubz.github.io/todo-app/)
 
-## Features
+## Features & Design Principles 
 
-- **Dynamic Tab Switching:** Loading content dynamically into DOM nodes without reloading the browser
-- **Modular View Structure:** Distinct modules for Home, Menu, About and Contact/Reservations
-- **Interactive Form & Styling:** Styled reservation form with layout controls and responsive card containers
-- **Custom Styling:** Clean CSS variables and typography
+- **Warm Minimalist Palette:** Designed with custom CSS design tokens utilizing muted slate tones, warm off-white linen text, soft lavender sidebar accents and earthy rose hover states.
+- **Project Categorization:** Create, view and delete project containers dynamically 
+- **To-Do Task Management:** Add a todo task with title, description, priority, notes and completed checkbox. A delete todo button built in per todo card container. 
+- **Active State Highlighting:** Dynamic sidebar and header indicators reflect the currently selected project.
+- **Responsive Grid Layout:** Powered by CSS Grid and Flexbox for responsive design for various screen sizes. Both for mobile and desktop. 
+
 
 ## Tech Stack
 
@@ -20,14 +22,14 @@ This is a simple SPA website with multiple tabs for a made up restaurant. The ma
 
 ## Webpack Configuration & Loaders
 * `css-loader` & `style-loader`: To process and inject CSS stylesheets directly into the DOM
-* **Webpack Asset Modules** (`type: 'asset/resource'`): To import images directly in JavaScript files (like `import reservationImg from './assets/...'`)
 * **HTML Webpack Plugin** (`html-webpack-plugin`): To automatically generate the `index.html` files in `dist` with all bundled scripts injected
+
 
 ## Local Installation
 
 1. Clone the repo:
 ```bash
-git clone https://github.com/blusubz/restaurant-website.git
+git clone https://github.com/blusubz/todo-app.git
 ```
 
 2. Install dependencies:
